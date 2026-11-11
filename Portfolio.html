@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Mahmoud A Ayta – Software Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #edf1f6;
+        --surface: #ffffff;
+        --ink: #101c2e;
+        --muted: #56637a;
+        --line: #d3dbe6;
+        --accent: #2447f5;
+        --accent-ink: #ffffff;
+        --expert: #0e8f86;
+        --chip: #e1e8f4;
+        --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+        --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          color-scheme: dark;
+          --bg: #0c1422;
+          --surface: #142036;
+          --ink: #e8eef8;
+          --muted: #9aa8bf;
+          --line: #243350;
+          --accent: #7c98ff;
+          --accent-ink: #0c1422;
+          --expert: #3fd0c4;
+          --chip: #1d2c48;
+        }
+      }
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --bg: #0c1422;
+        --surface: #142036;
+        --ink: #e8eef8;
+        --muted: #9aa8bf;
+        --line: #243350;
+        --accent: #7c98ff;
+        --accent-ink: #0c1422;
+        --expert: #3fd0c4;
+        --chip: #1d2c48;
+      }
+      html {
+        scroll-padding-top: env(safe-area-inset-top, 0px);
+        scroll-behavior: smooth;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 400 16px/1.65 var(--body);
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: var(--accent);
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
+      }
+      a:hover {
+        text-decoration-thickness: 2px;
+      }
+      :focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+
+      .shell {
+        display: grid;
+        grid-template-columns: 320px minmax(0, 1fr);
+        max-width: 1180px;
+        margin: 0 auto;
+      }
+      aside {
+        position: sticky;
+        top: 0;
+        align-self: start;
+        height: 100vh;
+        height: 100dvh;
+        padding: 56px 32px 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+        border-right: 1px solid var(--line);
+      }
+      .avatar {
+        width: 76px;
+        height: 76px;
+        border-radius: 22px;
+        background: var(--accent);
+        color: var(--accent-ink);
+        display: grid;
+        place-items: center;
+        font: 800 30px/1 var(--display);
+        letter-spacing: -0.02em;
+      }
+      h1 {
+        font: 800 clamp(34px, 4vw, 44px)/1.02 var(--display);
+        letter-spacing: -0.03em;
+        margin: 0;
+      }
+      .role {
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 15px;
+      }
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 2px;
+      }
+      nav a {
+        display: block;
+        padding: 6px 0;
+        color: var(--muted);
+        text-decoration: none;
+        font-weight: 500;
+        border-left: 2px solid transparent;
+        padding-left: 12px;
+        margin-left: -12px;
+      }
+      nav a:hover,
+      nav a.on {
+        color: var(--ink);
+        border-left-color: var(--accent);
+      }
+      .contact {
+        margin-top: auto;
+        display: grid;
+        gap: 6px;
+        font-size: 14px;
+      }
+      .contact a {
+        color: var(--ink);
+      }
+      .theme {
+        align-self: flex-start;
+        background: none;
+        border: 1px solid var(--line);
+        color: var(--muted);
+        border-radius: 999px;
+        padding: 6px 14px;
+        font: 500 13px var(--body);
+        cursor: pointer;
+      }
+      .theme:hover {
+        color: var(--ink);
+        border-color: var(--muted);
+      }
+
+      main {
+        padding: 56px 40px 80px;
+        display: grid;
+        gap: 72px;
+        min-width: 0;
+      }
+      h2 {
+        font: 700 28px/1.15 var(--display);
+        letter-spacing: -0.02em;
+        margin: 0 0 24px;
+      }
+      h3 {
+        font: 700 19px/1.3 var(--display);
+        margin: 0;
+      }
+      p {
+        margin: 0;
+      }
+      .lede {
+        font: 500 clamp(20px, 2.4vw, 26px)/1.4 var(--display);
+        letter-spacing: -0.01em;
+        max-width: 34em;
+      }
+      .lede b {
+        font-weight: 700;
+      }
+
+      .verdicts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+      .verdict {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 14px 18px;
+        min-width: 180px;
+      }
+      .verdict strong {
+        display: block;
+        font: 700 18px var(--display);
+        color: var(--expert);
+      }
+      .verdict span {
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .tl {
+        position: relative;
+        display: grid;
+        gap: 36px;
+        padding-left: 28px;
+      }
+      .tl::before {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 8px;
+        bottom: 8px;
+        width: 2px;
+        background: var(--line);
+      }
+      .job {
+        position: relative;
+      }
+      .job::before {
+        content: "";
+        position: absolute;
+        left: -29px;
+        top: 7px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--bg);
+        border: 3px solid var(--accent);
+      }
+      .job.now::before {
+        background: var(--accent);
+      }
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px 14px;
+        color: var(--muted);
+        font-size: 14px;
+        margin: 2px 0 10px;
+      }
+      .job ul,
+      .proj ul {
+        margin: 0;
+        padding-left: 20px;
+        display: grid;
+        gap: 6px;
+      }
+      .job li::marker,
+      .proj li::marker {
+        color: var(--accent);
+      }
+      .sub {
+        margin-top: 18px;
+      }
+      .sub h4 {
+        margin: 0;
+        font: 600 16px var(--body);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+        gap: 20px;
+      }
+      .proj {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .proj.big {
+        grid-column: 1/-1;
+      }
+      .stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .stack span,
+      .chips span {
+        background: var(--chip);
+        border-radius: 999px;
+        padding: 3px 12px;
+        font-size: 13px;
+        font-weight: 500;
+      }
+      .proj .go {
+        margin-top: auto;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .skills {
+        display: grid;
+        gap: 0;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        overflow: hidden;
+      }
+      .skills div {
+        display: grid;
+        grid-template-columns: 190px 1fr;
+        gap: 12px;
+        padding: 16px 22px;
+        border-top: 1px solid var(--line);
+      }
+      .skills div:first-child {
+        border-top: 0;
+      }
+      .skills dt {
+        font-weight: 600;
+      }
+      .skills dd {
+        margin: 0;
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .ach {
+        display: grid;
+        gap: 14px;
+      }
+      .ach li {
+        list-style: none;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 16px 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px 16px;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+      .ach {
+        padding: 0;
+        margin: 0;
+      }
+      .certs {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+        gap: 12px;
+      }
+      .certs li {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 14px 18px;
+      }
+      .certs small {
+        display: block;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .certs a {
+        font-weight: 500;
+        text-decoration: none;
+        color: var(--ink);
+      }
+      .certs a:hover {
+        color: var(--accent);
+        text-decoration: underline;
+      }
+
+      .edu {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 24px;
+        display: grid;
+        gap: 12px;
+      }
+      .edu .gpa {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 28px;
+      }
+      .edu .gpa b {
+        font-family: var(--display);
+      }
+
+      .hello {
+        background: var(--accent);
+        color: var(--accent-ink);
+        border-radius: 22px;
+        padding: 36px;
+      }
+      .hello h2 {
+        margin-bottom: 10px;
+      }
+      .hello a {
+        color: inherit;
+        font-weight: 600;
+      }
+      .hello .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 28px;
+        margin-top: 18px;
+      }
+      footer {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      @media (max-width: 900px) {
+        .shell {
+          grid-template-columns: 1fr;
+        }
+        aside {
+          position: static;
+          height: auto;
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+          padding: 40px 24px 24px;
+          gap: 20px;
+        }
+        nav ul {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 4px 16px;
+        }
+        nav a {
+          border-left: 0;
+          padding: 4px 0;
+          margin: 0;
+        }
+        .contact {
+          margin-top: 0;
+        }
+        main {
+          padding: 40px 24px 64px;
+          gap: 56px;
+        }
+        .skills div {
+          grid-template-columns: 1fr;
+          gap: 6px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <aside>
+        <div>
+          <h1>Mahmoud Ayta</h1>
+          <p class="role">Software Engineer at geidea</p>
+        </div>
+        <nav aria-label="Sections">
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="contact">
+          <a href="mailto:MahmoudAytta@gmail.com">MahmoudAytta@gmail.com</a>
+          <a href="tel:+201126880382">+20 112 688 0382</a>
+          <span
+            ><a href="https://linkedin.com/in/pro3zim">LinkedIn</a>
+            &nbsp;|&nbsp;
+            <a href="https://github.com/MahmoudAyta">GitHub</a></span
+          >
+        </div>
+        <button
+          class="theme"
+          id="theme"
+          type="button"
+          aria-label="Switch colour theme"
+        >
+          Switch theme
+        </button>
+      </aside>
+
+      <main>
+        <section id="about">
+          <p class="lede">
+            A Passionate Software Engineer and competitive programmer who builds
+            <b>backend and full-stack applications</b> with ASP.NET Core, Java
+            Spring Boot, Angular, React and SQL databases.
+          </p>
+          <p style="margin-top: 18px; max-width: 40em; color: var(--muted)">
+            Strong in algorithms, data structures, REST APIs and database-driven
+            web apps. Codeforces Expert and ACPC 2023 qualifier.
+          </p>
+          <div class="verdicts">
+            <div class="verdict">
+              <strong>Expert</strong><span>Codeforces rank</span>
+            </div>
+            <div class="verdict">
+              <strong>ACPC 2023</strong><span>Qualifier</span>
+            </div>
+            <div class="verdict">
+              <strong>400+ students</strong><span>Community led</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="experience">
+          <h2>Experience</h2>
+          <div class="tl">
+            <article class="job now">
+              <h3>Software Engineer, Geidea</h3>
+              <div class="meta">
+                <span>Full-time</span><span>Hybrid</span
+                ><span>Aug 2026 – Present</span>
+              </div>
+              <ul>
+                <li>
+                  Develop and maintain backend features in
+                  <b>C# and .NET</b> for Geidea’s merchant platform.
+                </li>
+                <li>
+                  Build and integrate <b>REST APIs</b> and work with internal
+                  services to support merchant onboarding and business
+                  workflows.
+                </li>
+                <li>
+                  Debug production issues and optimize existing code, working
+                  with <b>SQL Server, Git, Grafana Logs and Swagger</b> during
+                  development and testing.
+                </li>
+              </ul>
+            </article>
+            <article class="job">
+              <h3>Prompt Engineer, Scale AI</h3>
+              <div class="meta">
+                <span>Contract</span><span>Remote</span
+                ><span>Jun 2024 – Nov 2024 and Jan 2026 – Apr 2026</span>
+              </div>
+              <ul>
+                <li>
+                  Reviewed and improved AI-generated code solutions across C++,
+                  Java and SQL.
+                </li>
+                <li>
+                  Evaluated algorithmic correctness, edge cases, time complexity
+                  and solution quality.
+                </li>
+                <li>
+                  Worked on tasks involving dynamic programming, graph
+                  algorithms, data structures and SQL query optimization.
+                </li>
+              </ul>
+            </article>
+            <article class="job">
+              <h3>MAM Competitive Programming Community</h3>
+              <div class="meta">
+                <span>Saqr Qurish – Maadi</span><span>Aug 2022 – Jul 2024</span>
+              </div>
+              <div class="sub">
+                <h4>Head · Aug 2023 – Jul 2024</h4>
+                <ul>
+                  <li>
+                    Led a community of 400+ students, managed all member
+                    registration, and coordinated sessions and workshops, some
+                    of which I taught.
+                  </li>
+                </ul>
+              </div>
+              <div class="sub">
+                <h4>Mentors Head · Aug 2022 – Aug 2023</h4>
+                <ul>
+                  <li>
+                    Delivered workshops on algorithms, data structures and
+                    competitive programming.
+                  </li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="projects">
+          <h2>Projects</h2>
+          <div class="grid">
+            <article class="proj big">
+              <div>
+                <h3>BoneX: doctor–patient interaction platform</h3>
+                <p
+                  style="color: var(--muted); font-size: 14px; margin-top: 2px"
+                >
+                  Graduation project, graded A+
+                </p>
+              </div>
+              <div class="stack">
+                <span>ASP.NET Core</span><span>React</span
+                ><span>MS SQL Server</span>
+              </div>
+              <ul>
+                <li>
+                  A platform designed to bridge the gap between doctors and
+                  patients.
+                </li>
+                <li>
+                  Built the ASP.NET Core backend for doctor–patient interaction,
+                  user management and medical case handling.
+                </li>
+                <li>
+                  Added AI integration endpoints for X-ray result visualization,
+                  plus a simple React UI.
+                </li>
+              </ul>
+              <a class="go" href="https://github.com/ma7moud3zim/BoneX"
+                >View on GitHub</a
+              >
+            </article>
+
+            <article class="proj">
+              <h3>Filmore</h3>
+              <div class="stack">
+                <span>Java Spring Boot</span><span>Angular</span
+                ><span>MySQL</span>
+              </div>
+              <ul>
+                <li>
+                  Movie and TV show management platform with user-friendly
+                  interfaces.
+                </li>
+                <li>
+                  RESTful APIs for content management, search and CRUD, with
+                  relational persistence in MySQL.
+                </li>
+                <li>
+                  Responsive frontend and backend components for a smooth user
+                  experience.
+                </li>
+              </ul>
+              <a class="go" href="https://github.com/ma7moud3zim/Filmore"
+                >View on GitHub</a
+              >
+            </article>
+
+            <article class="proj">
+              <h3>Quiz Taking Platform</h3>
+              <div class="stack">
+                <span>Java Spring Boot</span><span>Angular</span
+                ><span>MySQL</span>
+              </div>
+              <ul>
+                <li>
+                  Online platform for creating and taking quizzes with an
+                  interactive experience.
+                </li>
+                <li>
+                  Responsive UI components and quiz flow that work across
+                  devices.
+                </li>
+                <li>
+                  Question handling, timer logic and result tracking with
+                  real-time feedback.
+                </li>
+              </ul>
+              <a
+                class="go"
+                href="https://github.com/ma7moud3zim/Quiz-taking-platform"
+                >View on GitHub</a
+              >
+            </article>
+
+            <article class="proj">
+              <h3>Shipment Tracker</h3>
+              <div class="stack">
+                <span>Java Spring Boot</span><span>Angular</span>
+              </div>
+              <ul>
+                <li>
+                  Web app to monitor and manage shipment statuses in real time.
+                </li>
+                <li>
+                  CRUD operations for shipment management and tracking data.
+                </li>
+                <li>
+                  Integrated backend APIs and database operations to store and
+                  retrieve shipment information.
+                </li>
+              </ul>
+              <a
+                class="go"
+                href="https://github.com/ma7moud3zim/ShipmentTracker"
+                >View on GitHub</a
+              >
+            </article>
+          </div>
+        </section>
+
+        <section id="skills">
+          <h2>Skills</h2>
+          <dl class="skills" style="margin: 0">
+            <div>
+              <dt>Programming languages</dt>
+              <dd class="chips">
+                <span>C#</span><span>C++</span><span>Java</span
+                ><span>JavaScript</span><span>TypeScript</span><span>SQL</span>
+              </dd>
+            </div>
+            <div>
+              <dt>Frameworks</dt>
+              <dd class="chips">
+                <span>ASP.NET Core</span><span>Spring Boot</span
+                ><span>Angular</span><span>REST APIs</span>
+              </dd>
+            </div>
+            <div>
+              <dt>Data and caching</dt>
+              <dd class="chips">
+                <span>MySQL</span><span>SQL Server</span><span>Oracle</span
+                ><span>Redis</span><span>Firebase</span><span>SQLite</span
+                ><span>H2 Database</span>
+              </dd>
+            </div>
+            <div>
+              <dt>Tools</dt>
+              <dd class="chips">
+                <span>Git</span><span>GitHub</span><span>GitLab</span
+                ><span>Linux</span><span>Docker</span><span>Postman</span
+                ><span>Swagger</span><span>XAMPP</span><span>Agile</span
+                ><span>CMD</span>
+              </dd>
+            </div>
+            <div>
+              <dt>Concepts</dt>
+              <dd class="chips">
+                <span>Object-oriented programming</span
+                ><span>Data structures and algorithms</span
+                ><span>SOLID principles</span><span>Database design</span
+                ><span>System design fundamentals</span
+                ><span>MVC architecture</span><span>Problem solving</span
+                ><span>Competitive programming</span><span>Clean code</span
+                ><span>UI/UX design</span>
+              </dd>
+            </div>
+            <div>
+              <dt>Spoken languages</dt>
+              <dd class="chips">
+                <span> Arabic (native) </span> <span> English (fluent)</span>
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <section id="achievements">
+          <h2>Achievements</h2>
+          <ul class="ach">
+            <li>
+              <span
+                >Qualified for the Arab and Africa Collegiate Programming
+                Contest 2023</span
+              ><a href="https://icpc.global/ICPCID/S68X5KBK6DX2">ICPC ID</a>
+            </li>
+            <li>
+              <span>First place in MAM Qualifications (2022 and 2023)</span>
+            </li>
+            <li>
+              <span>Expert rank on Codeforces, handle 3zim</span
+              ><a href="https://codeforces.com/profile/3zim"
+                >Codeforces profile</a
+              >
+            </li>
+          </ul>
+        </section>
+
+        <section id="certifications">
+          <h2>Certifications</h2>
+          <ul class="certs">
+            <li>
+              <a
+                href="https://www.linkedin.com/learning/certificates/8cd1f1df6f643fce3d39efb92af8698f2f834037e1b55c99da090d6dda315934"
+                >Advanced Programming with Java</a
+              ><small>LinkedIn Learning</small>
+            </li>
+            <li>
+              <a
+                href="https://learn.365datascience.com/certificates/CC-4F20DB90BF/"
+                >SQL and Database</a
+              ><small>365 Data Science</small>
+            </li>
+            <li>
+              <a
+                href="https://www.coursera.org/account/accomplishments/verify/UB679BWTRLZF"
+                >Data Structures</a
+              ><small>UC San Diego, Coursera</small>
+            </li>
+            <li>
+              <a
+                href="https://www.coursera.org/account/accomplishments/certificate/4NMK3KBBZG2G"
+                >Algorithmic Toolbox</a
+              ><small>UC San Diego, Coursera</small>
+            </li>
+            <li>
+              <a href="https://www.udemy.com/course/spring-hibernate-tutorial"
+                >Spring Boot 4, Spring 7 and Hibernate</a
+              ><small>Udemy</small>
+            </li>
+            <li>
+              <a
+                href="https://www.coursera.org/account/accomplishments/specialization/QECS3SFUQDP9"
+                >UI Design specialization (4 courses)</a
+              ><small>Coursera</small>
+            </li>
+            <li>
+              <a
+                href="https://www.udemy.com/certificate/UC-de662df0-6fa9-4640-ad04-b01644f2436a/"
+                >Git from Basics to Advanced</a
+              ><small>Udemy</small>
+            </li>
+          </ul>
+        </section>
+
+        <section id="education">
+          <h2>Education</h2>
+          <div class="edu">
+            <div>
+              <h3>B.Sc. in Computer Science</h3>
+              <p style="color: var(--muted); font-size: 14px">
+                Modern Academy, Maadi · 2020 – 2025
+              </p>
+            </div>
+            <div class="gpa">
+              <span>GPA <b>3.32 / 4.00</b></span
+              ><span
+                >Graduation project <b>A+</b> ·
+                <a href="https://github.com/ma7moud3zim/BoneX">BoneX</a></span
+              >
+            </div>
+            <div class="chips">
+              <span>Data Structures and Algorithms</span
+              ><span>Object-Oriented Programming</span
+              ><span>Database Systems (SQL)</span
+              ><span>Software Engineering</span><span>Operating Systems</span
+              ><span>Computer Networks</span><span>Design Patterns</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" class="hello">
+          <h2>Let’s talk</h2>
+          <p>
+            I’m open to backend and full-stack work. Email is the quickest way
+            to reach me.
+          </p>
+          <div class="row">
+            <a href="mailto:MahmoudAytta@gmail.com">MahmoudAytta@gmail.com</a>
+            <a href="tel:+201126880382">+20 112 688 0382</a>
+            <a href="https://linkedin.com/in/pro3zim">LinkedIn</a>
+            <a href="https://github.com/MahmoudAyta">GitHub</a>
+          </div>
+        </section>
+
+        <footer>© Mahmoud Abdelazim Ayta</footer>
+      </main>
+    </div>
+
+    <script>
+      (function () {
+        var root = document.documentElement;
+        try {
+          var t = localStorage.getItem("theme");
+          if (t) root.setAttribute("data-theme", t);
+        } catch (e) {}
+        document.getElementById("theme").addEventListener("click", function () {
+          var dark = root.getAttribute("data-theme")
+            ? root.getAttribute("data-theme") === "dark"
+            : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var next = dark ? "light" : "dark";
+          root.setAttribute("data-theme", next);
+          try {
+            localStorage.setItem("theme", next);
+          } catch (e) {}
+        });
+        var links = [].slice.call(document.querySelectorAll("nav a"));
+        if ("IntersectionObserver" in window) {
+          var io = new IntersectionObserver(
+            function (es) {
+              es.forEach(function (e) {
+                if (e.isIntersecting) {
+                  links.forEach(function (l) {
+                    l.classList.toggle(
+                      "on",
+                      l.getAttribute("href") === "#" + e.target.id,
+                    );
+                  });
+                }
+              });
+            },
+            { rootMargin: "-30% 0px -60% 0px" },
+          );
+          document.querySelectorAll("main section").forEach(function (s) {
+            io.observe(s);
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
